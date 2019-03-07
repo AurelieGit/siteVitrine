@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import{ApiService} from '../shared/services/api.service';
+import{StorageService} from '../shared/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public userData:any;
+  //public emittedDat:any[] = [];//
+
+  constructor(private _dataService: ApiService, private _shareData:StorageService) { }
 
   ngOnInit() {
+    this.getData();
   }
-
+  getData (): any{
+    this._dataService.getUsers().subscribe(
+      data => {
+        this.userData = data;
+        this.userData = this.userData.results;
+        this._shareData.storage =  this.userData;
+        return this.userData;
+      },
+      err => console.error(err),
+      () => console.log('done loading user')
+    )
+  }
+  
 }

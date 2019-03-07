@@ -9,7 +9,7 @@ export class ApiService {
   public url : string = "https://randomuser.me/api/?results=8";
 
   constructor( private _http: HttpClient) { }
-  getData():Observable<any>{
+  getUsers():Observable<any>{
     return this._http.get( this.url);
 
   }
