@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule,FormGroup, FormControl, Validators } from '@angular/forms';
 import{ApiService} from '../shared/services/api.service';
 import{StorageService} from '../shared/services/storage.service';
 
